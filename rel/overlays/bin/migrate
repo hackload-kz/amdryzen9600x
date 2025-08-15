@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+cd -P -- "$(dirname -- "$0")"
+exec ./amdryzen9600x eval Amdryzen9600x.Release.migrate
