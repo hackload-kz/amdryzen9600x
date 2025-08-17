@@ -1,11 +1,20 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Amdryzen9600x.Repo.insert!(%Amdryzen9600x.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias Amdryzen9600x.{Repo}
+alias Amdryzen9600x.Accounts.User
+
+now = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
+
+Repo.insert!(
+  %User{
+    user_id: 1,
+    email: "user@gmail.com",
+    password_hash: "deprecated",
+    password_plain: "plainpass",
+    first_name: "Demo",
+    surname: "User",
+    birthday: ~D[1995-05-01],
+    registered_at: now,
+    is_active: true,
+    last_logged_in: now
+  },
+  on_conflict: :nothing
+)

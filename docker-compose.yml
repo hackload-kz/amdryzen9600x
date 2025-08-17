@@ -17,5 +17,6 @@ services:
       - POSTGRES_DB=amdryzen9600x_dev
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
     ports:
       - "5432:5432"
